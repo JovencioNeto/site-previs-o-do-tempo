@@ -7,10 +7,19 @@ async function search_city(city) {
 }
 
 function data_insert(data) {
-    document.getElementById('city').innerHTML = `Tempo em ${data.name}`
-    document.getElementById('temp').innerHTML = `${Math.floor(data.main.temp)} ° C`
-    document.getElementById('text-prev').innerHTML = data.weather[0].description
-    document.getElementById('humidity').innerHTML = `Umidade: ${data.main.humidity} %`
+    if(data.name != undefined){
+        document.getElementById('city').innerHTML = `Tempo em ${data.name}`
+        document.getElementById('temp').innerHTML = `${Math.floor(data.main.temp)} ° C`
+        document.getElementById('text-prev').innerHTML = data.weather[0].description
+        document.getElementById('humidity').innerHTML = `Umidade: ${data.main.humidity} %`
+        document.getElementById('icon').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`
+    }else{
+        document.getElementById('city').innerHTML = 'Escreva um local que existe!'
+        document.getElementById('temp').innerHTML = '0 ° C'
+        document.getElementById('text-prev').innerHTML = 'N.A'
+        document.getElementById('humidity').innerHTML = 'Umidade: 0 %'
+    }
+    
 }
 
 button.addEventListener('click', async () => {
